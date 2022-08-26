@@ -1,0 +1,45 @@
+<!-- Backtester Page Template -->
+{% extends "layout.html" %}
+{% block content %}
+    <div class="content-section" style="max-width: 100%;margin-left: auto;margin-right: auto ">
+    <a style="color:#181818">
+        <h2 style="color:#181818">Welcome to the VEPC National Electricity Market Data Dashboard</h2>
+        <body style="color:#181818">
+            The purpose of this dashboard is to make Australian National Energy Market data back to 2012 easily accessible and downloadable.
+            Use of the dashboard is subject to the <a href="/Terms_and_Conditions" target="_blank"> Terms of Use</a>.
+            <br><br>
+            Further information on VEPC can be obtained
+            <a href="https://www.vepc.org.au/" target="_blank"> here</a>. Your feedback is valued please <a href="/contact" target="_blank">contact us</a>  for questions or comments.
+
+            <br><br>
+            <h2 style="color:#181818">Login to use the dashboard</h2>
+            <div style="table" class="border-top pt-3">
+            <small class="text-muted">
+                Already Have An Account? <a class="ml-2" href="{{ url_for('users.login') }}">Sign in</a>
+            </small>
+                <small class="text-muted">or<a class="ml-2" href="{{ url_for('users.register') }}">register now!</a>
+            </small>
+            </div>
+            <br>
+            <h3 style="color:#181818"><br>Screenshots:</h3>
+            <div style="display: grid;">
+                <img style="max-width: 70%;max-height: 100vh;margin: auto;" src="/static/screenshot_main1.png">
+            </div>
+            <div style="display: grid;">
+                <img style="max-width: 70%;max-height: 100vh;margin: auto;" src="/static/screenshot_main2.png">
+            </div>
+            <br>
+            <br>
+            <div style="display: grid;">
+                <img style="max-width: 70%;max-height: 100vh;margin: auto;" src="/static/gen1.png">
+            </div>
+            <div style="display: grid;">
+                    <img style="max-width: 70%;max-height: 100vh;margin: auto;" src="/static/gen2.png">
+                </div>
+    </div>
+    </div>
+    </body>
+    {{ analytics }}
+    {% include "footer.html" %}
+{% endblock content %}
+

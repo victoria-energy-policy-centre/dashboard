@@ -1,0 +1,16 @@
+<!-- regional Page Template -->
+{% extends "layout.html" %}
+{% block content %}
+   <h2 style="color: #181818">NEM Interconnectors</h2>
+    <body>
+        <div style="background: #fefcfe">
+			<iframe class="content-section"
+			  noresize='noresize'
+			  style="scrollbar-width: 2rem;position: absolute;left:1%; width: 98%; height:100%; margin: auto; padding: 0;background:url('/static/loading_logo.gif') no-repeat;background-position: 50% 20%;"
+			  src={{ inter_dash_url }}
+			  frameborder="0">
+			</iframe>
+        </div>
+    </body>
+    {{ analytics }}
+{% endblock content %}

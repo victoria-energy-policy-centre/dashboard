@@ -1,0 +1,109 @@
+<!-- regional Page Template -->
+
+{% extends "layout.html" %}
+{% block content %}
+
+        <script src='http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.5.1.js'></script>
+
+        <script type="text/javascript">
+        $(document).ready(function() {
+            var delay = 180e3;
+            setTimeout(() => {
+                // your code
+                $('#myModal').modal();
+
+            }, delay);
+        });
+        </script>
+
+    <h2 style="color: #181818">Regional NEM Data</h2>
+
+    <body>
+        <div class="holds-the-iframe" >
+			<iframe class="content-section"
+			  noresize='noresize' 
+			  style="scrollbar-width: 2rem;position: absolute;left:1%; width: 98%; height:100%; margin: auto; padding: 0;background:url('/static/loading_logo.gif') no-repeat;background-position: 50% 20%;"
+			  src={{ dash_url }}
+			  frameborder="1rem">
+			</iframe>
+        </div>
+
+
+    <!-- Modal -->
+    <div id="myModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <div class="modal-body">
+            <div >
+        <div class="content-section" style="max-width: 30rem; margin: 1rem; float: right;  ">
+                <a class="border-bottom" style="font-size: 20px"><strong ">Keep in touch – subscribe to our mailing list </strong></a>
+        <div style="max-width: 100%">
+        <small class="text-muted">
+            Keep up to date with new dashboard features and VEPC research.  Unsubscribe at any time.</small>
+
+
+        <form method="POST" action="">
+        <br>
+            {{ form.hidden_tag() }}
+            <div style=" display: block">
+            <fieldset class="form-group">
+                <div class="form-group">
+                    <strong>{{ form.first_name.label(class="form-control-label") }}</strong>
+                    {% if form.first_name.errors %}
+                        {{ form.first_name(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.first_name.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.first_name(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    <strong> {{ form.email.label(class="form-control-label") }}</strong>
+                    {% if form.email.errors %}
+                        {{ form.email(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.email.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.email(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div style="margin-left: auto;margin-right: auto">
+                    {{ form.recaptcha }}
+                </div>
+            </div>
+                </div>
+
+
+            </fieldset>
+            <div class="form-group" style=" display: block">
+                {{ form.submit(class="btn btn-outline-info") }}
+            </div>
+        </form>
+    </div>
+    </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+     <!-- Modal -->
+
+
+      </div>
+    </div>
+    </body>
+
+    {{ analytics }}
+{% endblock content %}

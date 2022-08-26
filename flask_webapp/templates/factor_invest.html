@@ -1,0 +1,41 @@
+<!-- Factor Investing Page Template -->
+{% extends "layout.html" %}
+{% block content %}
+    <h1>Factor Investing Wiki</h1>
+    <body>
+		<!--This allows us to have latex math notation-->
+    	<script type="text/x-mathjax-config">
+		MathJax.Hub.Config({
+		  TeX: {
+		     equationNumbers: {  autoNumber: "AMS"  },
+		     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js", "color.js"]
+		  }
+		});
+		</script>
+
+		<script type="text/javascript"
+		 src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+		</script>
+
+		<!-- Start article here: -->
+		<p>
+			An asset pricing factor (hereafter referred to as factors) is any characteristic or property that can explain the cross-sectional differences in the returns of assets (Blitz and Vidojevic, 2019). Researchers try to identify factors which are persistent over time and have strong predictive power over a large range of assets (Miller, 2006). A factor strategy is an investment strategy where the investor exploits market anomalies which potentially outperform the overall market. Additionally, the investor might construct multi-factor portfolios by combining factors to take advantage of the low correlation between the different factor portfolios. This can give the investor a higher degree of diversification. Factor strategies are consequently synonymous with alternative risk premia. A market anomaly is a situation where securities behave contrary to the Efficient Market Hypothesis (EMH). The diversification effect can be seen in figure 8, where we notice that strategies such as Value and Minimum Volatility do well in consecutive years, indicating that certain factor portfolios have low correlation. As a result of their dynamic nature, it can prove valuable for investors and researchers to test and rank the different factors at different points in time. 
+		</p>
+
+		<p>
+			While the use of quantitative strategies such as factor strategies has its roots in academia, it has slowly made its way into the financial services industry, most notably among quantitative hedge funds (e.g. they employ algorithmic trading and Machine Learning). One of the largest firms in this sector, Two Sigma, has seen its assets under management grow from around \$6 billion in 2011 to over \$50 billion in 2017 \citep{FTHF}. Furthermore, 5 out of the top 6 hedge funds in Institutional Investors 2018 hedge fund rankings were quantitative funds. \citep{HFrankings} Machine Learning is also growing in other parts of financial services like robo-advisory, underwriting, and credit-scoring.
+
+		</p>
+
+			ADD MORE FROM THE OPEN WORD DOCS!
+
+
+
+
+
+		This web page visualizes the function \(
+		u(t) = Ae^{-bt}\sin (w t), \hbox{ for } t\in [0,T]
+		\).
+    </body>
+{% endblock content %}
+

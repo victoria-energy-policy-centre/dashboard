@@ -1,0 +1,201 @@
+.js-plotly-plot .plotly .modebar {
+  padding-top: 5%;
+  margin-right: 3.5%;
+  color: black;
+}
+
+body {
+  color: black;
+  background-color: #fefcfe;
+  margin: 0%;
+}
+
+.footer {
+
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      background-color: #071F4E;
+      color: white;
+      text-align: center;
+    }
+
+.two.columns {
+  color: black;
+  width: 16.25%;
+}
+
+.column,
+.columns {
+  color: black;
+  margin-left: 0.5%;
+}
+.mini_container {
+  color: black;
+  flex-grow: 1;
+  border-radius: 5px;
+  margin: 10px;
+  padding: 15px;
+  position: relative;
+  background-color: #fefcfe;
+  box-shadow: 2px 2px 2px 2px lightgrey;
+}
+
+  .pretty_container_info {
+    color: black;
+    background: #dbf8ff;
+    border-radius: 10px;
+    margin: 15px;
+    padding: 15px;
+    box-shadow: 2px 2px 2px 2px #ffffff;
+    position: relative;
+    flex-grow: 1;
+  }
+.pretty_container {
+
+  background: #136e5b;
+  color: black
+  border-radius: 5px;
+  margin: 100px;
+  padding: 15px;
+  box-shadow: 2px 2px 2px 2px lightgrey;
+  position: relative;
+  flex-grow: 1;
+  
+}
+.invis_container {
+  background-color: #fefcfe;
+  margin: 10px;
+  padding: 15px;
+  position: relative;
+  flex-grow: 1;
+  color: black;
+}
+
+
+.bare_container {
+  margin: 0 0 0 0;
+  padding: 0 0 0 0;
+  color: black;
+}
+
+.dcc_control {
+  margin: 0;
+  padding: 5px;
+  width: calc(100%-40px);
+  color: black;
+}
+
+.control_label {
+  margin: 0;
+  padding: 10px;
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+  width: calc(100%-40px);
+  color: black;
+}
+
+.rc-slider {
+  margin-left: 0px;
+  padding-left: 0px;
+  color: black;
+}
+
+.flex-display {
+  display: flex;
+  width: 100%;
+  display: -webkit-flex;
+  color: black;
+}
+
+.buttons-display {
+  display: flex;
+  width: 100%;
+  display: -webkit-flex; 
+  justify-content: space-between;
+  color: black;
+}
+
+
+.container-display {
+  display: flex;
+  color: black;
+}
+
+#individual_graph,
+#aggregate_graph {
+  width: calc(100% - 30px);
+  position: absolute;
+  color: black;
+}
+
+#count_graph {
+  position: absolute;
+  height: calc(100% - 30px);
+  width: calc(100% - 30px);
+}
+
+#countGraphContainer {
+  flex: 5;
+  position: relative;
+}
+
+#header {
+  align-items: center;
+}
+
+#learn-more-button {
+  text-align: center;
+  height: 100%;
+  padding: 0 20px;
+  text-transform: none;
+  font-size: 15px;
+  float: right;
+  margin-right: 10px;
+  margin-top: 30px;
+}
+#title {
+  text-align: center;
+}
+
+
+
+#right-column {
+  display: flex;
+  flex-direction: column;
+}
+
+#wells {
+  flex: 1;
+}
+
+#gas {
+  flex: 1;
+}
+
+#aggregate_data {
+  align-items: center;
+}
+
+#oil {
+  flex: 1;
+}
+
+#water {
+  flex: 1;
+}
+
+#tripleContainer {
+  display: flex;
+  flex: 3;
+}
+
+#mainContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+#pie_graph > div > div > svg:nth-child(3) > g.infolayer > g.legend {
+  pointer-events: all;
+  transform: translate(30px, 349px);
+}

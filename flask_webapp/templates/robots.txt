@@ -1,0 +1,27 @@
+User-Agent: *
+Disallow: /api/
+Disallow: /comment/
+Disallow: /goto/
+Disallow: /privatemsg/
+Disallow: /search/
+
+User-Agent: AhrefsBot
+Disallow: /
+
+User-Agent: dotbot
+Disallow: /
+
+User-Agent: Superfeedr
+Disallow: /
+
+
+# Group 1
+User-agent: Googlebot
+Disallow: /nogooglebot/
+
+
+# Group 2
+User-agent: *
+Allow: /
+
+Sitemap: https://vepc-data.appspot.com/sitemap.xml

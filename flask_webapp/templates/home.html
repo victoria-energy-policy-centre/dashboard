@@ -1,0 +1,88 @@
+<!-- Backtester Page Template -->
+{% extends "layout.html" %}
+{% block content %}
+    <div class="content-section" style="max-width: 100%;min-height:30rem; auto;margin-right: auto ">
+<div >
+        <div class="content-section" style="max-width: 30rem; margin: 1rem; float: right;  ">
+                <a class="border-bottom" style="font-size: 20px"><strong ">Keep in touch – subscribe to our mailing list </strong></a>
+        <div style="max-width: 100%">
+        <small class="text-muted">
+            Keep up to date with new dashboard features and VEPC research.  Unsubscribe at any time.</small>
+
+
+        <form method="POST" action="">
+        <br>
+            {{ form.hidden_tag() }}
+            <div style=" display: block">
+            <fieldset class="form-group">
+                <div class="form-group">
+                    <strong>{{ form.first_name.label(class="form-control-label") }}</strong>
+                    {% if form.first_name.errors %}
+                        {{ form.first_name(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.first_name.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.first_name(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    <strong> {{ form.email.label(class="form-control-label") }}</strong>
+                    {% if form.email.errors %}
+                        {{ form.email(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.email.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.email(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div style="margin-left: auto;margin-right: auto">
+                    {{ form.recaptcha }}
+                </div>
+            </div>
+                </div>
+
+
+            </fieldset>
+            <div class="form-group" style=" display: block">
+                {{ form.submit(class="btn btn-outline-info") }}
+            </div>
+        </form>
+    </div>
+    </div>
+
+
+        <p style="color:#181818;font-weight: bold;font-size: 30px; min-width: 200px">Welcome to the VEPC National Electricity Market Data Dashboard</p>
+        <p style="color:#181818; display: block;">
+            This dashboard aims to make historical Australian National Electricity Market datasets easily accessible and downloadable.
+            <br>
+            Use of the dashboard is subject to the <a href="/Terms_and_Conditions" target="_blank"> Terms of Use</a>.
+            <br><br>
+            Further information on VEPC can be obtained
+            <a href="https://www.vepc.org.au/" target="_blank"> here</a>. Your feedback is valued please <a href="/contact" target="_blank">contact us</a>  for questions or comments.
+            <br>
+            <br>
+            Developed by <a href="https://www.linkedin.com/in/steven-percy/" target="_blank"> Dr Steven Percy</a>.
+
+            <br>
+            <br>
+            <!
+            <a  href="https://www.vepc.org.au/" target="_blank" style="float: left;">
+                <img style=" width: 30vw; max-width: 500px; height: auto" id="VEPC-Image" src="/static/VEPC.png" >
+              </a>
+            <img style=" width: 30vw;height: auto;max-width: 500px; "  src="/static/victoria_uni.png" style="margin-bottom: 4px;margin-right: 15px;" >
+
+    </p>
+    </div>
+    </div>
+    </body>
+    {{ analytics }}
+    {% include "footer.html" %}
+{% endblock content %}
+

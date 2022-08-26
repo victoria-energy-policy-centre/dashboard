@@ -1,0 +1,129 @@
+<!-- Factor Investing Page Template -->
+{% extends "layout.html" %}
+{% block content %}
+    <h1>Machine Learning Wiki</h1>
+    <img src="/static/profile_pics/matrix2.jpg", width="100%", height="5%">
+
+    <body>
+    	<script type="text/x-mathjax-config">
+		MathJax.Hub.Config({
+		  TeX: {
+		     equationNumbers: {  autoNumber: "AMS"  },
+		     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js", "color.js"]
+		  }
+		});
+		</script>
+
+
+		<!-- Start article here: -->
+		<p>
+		<script type="text/javascript"
+		 src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+		</script>
+
+		<H4>Introduction</H4>
+
+		Machine Learning (ML) can be defined as the application of set of high-dimensional models for statistical prediction (Marsland, 2014). The <i>learning</i> refers to the fact that the algorithms adapt and modify their actions using information from the data - rather than explicit instructions - to improve their accuracy. In contrast to traditional econometrics, Machine Learning is about estimating a function \( f(\cdot) \)
+		to predict an outcome \(y\), rather than estimating the parameter associated with the predictor. In other words, ML estimates \(\hat{y}\), while econometrics estimates \(\hat{\beta}\). Consequently, Machine Learning allows us to test a more extensive list of possible variables and richer functional forms than traditional empirical methods used in asset pricing. In this paper I concentrate on regression models, as we predict stock returns (a continuous variable), rather than classification which predicts categories (e.g. whether a stock is "outperforming" or "underperforming"). We will now look at some topics in depth, starting with parameters.
+		</p>
+
+		<H4>Parameters</H4>
+		<p>
+			Parameters are variables that are internal to the model and their value can be estimated from the data. They are thus not typically set by the researcher. An example is the β-coefficients of a linear regression. Hyperparameters are external to the model and their value cannot be estimated from the data (James et al., 2013). For instance, the number of trees in a random forest. These parameters need to be set manually to maximise the model’s out of sample performance. Next we will look at some machine learning models in detail.
+		</p>
+
+		<H4>Linear Regression</H4>
+		<p>
+			Suppose we are looking to predict the excess returns from some stock market data. Let the vector of predictor variables be given as \(X\) and the outcome variable excess returns as \(y\). My data then consists of \(n\) pairs of the two: \( (x_1, y_1), ..., (x_n, y_n) \). The relationship between \(X\) and \(y\) is given as: $$y=X\beta + \varepsilon$$ where $$\mathbf{E} [\varepsilon |X]=0, $$ also known as the strict exogeneity assumption, this implies that our estimator variables are independent of the error term, i.e. not correlated. Further, we assume that $$Var(\varepsilon |X)=\sigma^2, $$ where \(\sigma \) is a constant, so we assume constant variance of the error term. The random error term allows the relationship between \(y\) and \(X\) to have a non-deterministic component (Berk and Devore, 2012). We want to estimate the true value of \( \beta \) from a sample using Ordinary Least Squares (OLS). This is done by solving the following minimisation problem: $$ \min_{\beta} ||y-X\beta||^2  $$. The objective function above is also called the Residual Sum of Squares (RSS). The solution to the problem yields the OLS estimator $$\hat{\beta}_{OLS} = (X^TX)^{-1}(X^TY),$$ which is the value of $\beta$ that minimises the RSS. See figure below for an illustration.
+		</p>
+		<p>
+			<img src="/static/profile_pics/ols_opt.png", class="center">
+		</p>
+
+		<H4>Bias-Variance Tradeoff</H4>
+		<p>
+			One typically considers two characteristics of a model's estimators: bias and variance. Bias is defined as the difference between the true population parameter \(\beta \) and the expected estimator from the sample: $$\text{Bias}(\beta_{\text{OLS}}) = \mathbf{E}(\beta_{\text{OLS}}) - \beta.$$  One can think of the bias as the \textit{inaccuracy} of our estimate. Variance on the other hand, measures the uncertainty or spread of our estimate (Berk and Devore, 2012), and is given as: $$\text{Var}(\beta_{\text{OLS}}) = (X^TX)^{-1} \sigma_e^2.$$ If \(\ k \) is the number of predictor variables, we can estimate the variance of residuals (\(\ \hat{\sigma}_e^2 \)), which is the variation around the fitted regression line, as
+			 $$     \hat{\sigma}_e^2 = \frac{1}{n-k-1}\sum_{i=1}^N(y_i - \hat{y_i})^2 $$
+
+			where \(\ n \) is the number of observations. Note that we divide by \(\ n-k-1 \) rather than \(\ n \) to make \(\ \hat{\sigma}_e^2 \) an unbiased estimate of \(\ E(\hat{\sigma}_e^2)=\hat{\sigma}_e^2 \). Bias and variance are two sources of prediction error and we (ideally) want to minimise both. In practice we need to find a balance between the two. Let the model's total prediction error (Err) be given as: $$\text{Err} = E(Y-\hat{y})^2$$
+			$$= \left[E(X\hat{\beta})-X\beta\right]^2 +
+			E\left(X\hat{\beta}-E[X\beta]\right)^2 +\sigma_e^2$$
+			$$ = \text{Bias}^2+\text{Variance}+\sigma^{2}_{e}.$$
+
+			So, total prediction error consists of error from bias and variance, and an irreducible error (from the noise term) which would still occur even with infinite data regardless of model. While the OLS estimator is the Best Linear Unbiased Estimator (BLUE by the Gauss-Markow Theorem), it can have high variance when the number of predictor variables gets high and particularly if they are highly correlated. This can be seen from Equation above, when the number of variables \(\ k \) approaches the number of observations \(\ n \), the variance goes to infinity. This is the main problem with using OLS on large financial datasets with accounting data, price data and so on. Similarly, in the plot below, we see that when the number of variables (here noted as "Model Complexity") increases, we achieve lower bias, but higher variance. Since OLS estimator is unbiased, we can improve the model by increasing the bias slightly, which reduces the variance and the total prediction error. This process is called regularisation (Gu, Kelly, and Xiu, 2019).
+			
+			<img src="http://scott.fortmann-roe.com/docs/docs/BiasVariance/biasvariance.png" class="center"> 
+
+			In situation above, we want to reduce the number of variables k until we reach the optimal model complexity, in which we have minimal prediction error.
+		</p>
+
+
+		<H4>Elastic Net</H4>
+		<p>
+			Suppose you want to predict stock returns using a set of predictor variables like price to earnings ratio, EPS, firm size, or price series like momentum and volatility. If our varaible set is large, and possibly correlated, it could be beneficial to penalise or "shrink" certain parameter estimates. Elastic net combines the penalties of ridge and LASSO into a convex combination of the two. The following loss function is minimised:
+
+			$$\label{elasticnet}
+			    \min_{\beta} ||y-X\beta||^2 + \lambda(\alpha ||\beta||^2 + (1-\alpha)||\beta||)
+			$$ 
+
+			where \(\ \lambda \geq 0 \) is the hyperparemeter which controls the amount of shrinkage. Larger \(\ \lambda \) means more shrinkage of the coefficients, which are shrunk towards zero, meaning we impose a size-constraint on the coefficients (Taylor, 2018). Notice that when \(\ \lambda \rightarrow 0 \), we approach the OLS objective function. Inside the penalty term we have first the absolute penalty (which is known as l1 regularisation), which is the ridge regression-part. The second is the squared penalty (l2 regularisation), which represents the LASSO-part. The main difference between l1 and l2 is that l2 shrinks all the coefficients to a non-zero value, while l1 shrinks some of the coefficients all the way to zero, completely removing certain variables (Taylor, 2018). The hyperparameter \(\ \alpha\) decides the relative weight of l and l2. If \(\ \alpha = 1\), we are fitting a LASSO regression, and vice versa. One would use hyperparameter tuning to find the optimal value for \(\ \alpha\).
+		</p>
+
+		<H4>Decision Tree</H4>
+		<p>
+			The decision tree regression (or "regression tree") is a non-parametric model, meaning it does not make any assumptions about the data and its distribution (in contrast with linear regression and elastic net which are parametric), instead it makes assumptions about the hyperparameters of the algorithm. The regression tree breaks down the dataset into smaller and smaller subsets at various split points. The tree chooses a region \(\ R \) to split the data such that it minimises the within region squared error around the mean (Townshend, 2018). It solves the following minimisation problem:
+			$$
+			    \min_{\{R_m\}_{m=1}^M} \frac{1}{N_m}\sum_{i\in R_m}(y_i - \bar{y}_m)^2
+			$$
+
+			To optimise our in-sample fit (and overfit our model) one would choose a region for each data point. However, this would quickly lead to a "NP hard" problem, which means there will be too many combinations to solve (Hastie, Tibshirani, and Friedman, 2017). Also, the model would perform poorly out of sample. The solution is to search only on hypercurves, which can be found using recursive binary splits (Townshend, 2018). As an example, in the figure below, I have fitted a regression tree on a US stock dataset with only 1 variable (1-month price momentum). The top part shows recursive binary splits. The bottom part shows how the regression tree is fitted on the data. Each discrete jump corresponds to the depth of the tree. Increasing the tree depth will increase the in-sample fit but also the chance of overfitting if set too high).
+
+			<img src="/static/profile_pics/dtr_sp1.png" class='center'>
+
+			At each decision node, the model decides how to split the data into sub-samples. At the terminal node, we end up with a region \(\ R_i \). Decision Trees are greedy algorithms,  which means they are designed to guarantee finding a solution (but not necessarily the most optimal one). The predicted variable (e.g. stock return) \(\ \hat{y} \) is found as the mean of \(\ y \) in each region. Looking across the splits on the terminal nodes in the figure above, we notice how values of stock returns increase for higher momentum values. This is also evident in the graph. The size of the tree is one of the hyperparameters we tune, as it controls the complexity and overfitting trade-off highlighted previously. For example, if we tune the tree depth to a very high value, the blue line would try to reach all the individual red observations, and overfit. The goal is rather to fit as many as it need to maximise the out of sample prediction accuracy. The remaining models we will look at are variations of the decision tree.
+		</p>
+
+		<H4>Bagging</H4>
+
+
+
+
+
+
+
+
+
+
+
+    </body>
+{% endblock content %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
